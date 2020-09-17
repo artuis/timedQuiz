@@ -20,8 +20,10 @@ var questions = [
 
 ];
 
+//questions that have been used will go in here
 var answeredQuestions = [];
 
+//various query selectors for future use
 var question = document.querySelector("#title-and-questions");
 var description = document.querySelector("#description");
 var start = document.querySelector("#start");
@@ -32,18 +34,21 @@ var enterScore = document.querySelector("#enter-score");
 var scoreList = document.querySelector("#score-list");
 var clear = document.querySelector("#clear");
 
+//variables stored for later use
 var questionNum = 1;
 var timeLeft = questions.length * 15;
 var highScores = [];
 var initials;
 var timer;
 
+//retrieves score list from local storage if one exists
 if (localStorage.getItem("scoreList") !== null) {
 
     highScores = JSON.parse(localStorage.getItem("scoreList"));
 
 }
 
+//different script is used if not on index
 if (location.href.includes("high-scores")) {
 
     highScores = sort(highScores);
@@ -57,6 +62,7 @@ if (location.href.includes("high-scores")) {
 
     }
 
+    //behavior for "Clear" button on high score page
     clear.addEventListener("click", function() {
 
         scoreList.textContent = "";
@@ -64,15 +70,17 @@ if (location.href.includes("high-scores")) {
 
     })
 
-
+//script used on main page/index
 } else {
 
+    //starts game if "Start" is clicked
     start.addEventListener("click", function() {
 
         startGame();
 
     })
 
+    //checks which answer used clicked, moves onto next question if one of the choices is clicked, and displays "right" or "wrong" for about 1 second depending on the choice
     answerList.addEventListener("click", function(event) {
 
         if (event.target.tagName === "BUTTON") {
@@ -107,10 +115,12 @@ if (location.href.includes("high-scores")) {
 
             answerList.innerHTML = "";
 
+            // ends game if unused questions bank runs out
             if (questions.length > 0) {
 
                 newQuestion();
 
+            // stops timer and asks for user input to store score
             } else {
 
                 clearInterval(timer);
@@ -123,6 +133,8 @@ if (location.href.includes("high-scores")) {
 
     })
 
+    //checks when user hits submit, and saves score if something is present in input
+    //since the hyphen is used to extract the score for sorting, hyphen is not allowed
     enterScore.addEventListener("click", function(event) {
         event.preventDefault();
 
@@ -148,6 +160,7 @@ if (location.href.includes("high-scores")) {
     })
 }
 
+//starts game and timer
 function startGame() {
 
 
@@ -176,6 +189,7 @@ function startGame() {
 
 }
 
+//changes page to display a random question with answers in random order
 function newQuestion() {
 
     var answerBank = [];
@@ -217,6 +231,7 @@ function newQuestion() {
 
 }
 
+//changes page to ask for user input score
 function inputScore() {
 
     timeLeft = parseInt(time.textContent.substr(6));
@@ -236,6 +251,7 @@ function inputScore() {
 
 }
 
+//sorts array from highest to lowest score
 function sort(arr) {
 
     if (arr.length <= 1) {
@@ -252,6 +268,7 @@ function sort(arr) {
 
 }
 
+//merge sort helper method
 function merge(arr1, arr2) {
 
     var resultArr = [];
