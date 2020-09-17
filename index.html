@@ -32,7 +32,7 @@
             <ul class="navbar-nav header-text">
 
                 <li class="nav-item ml-auto">
-                    <a class="nav-link">Time: <span id ="time">75</span></a>
+                    <span id ="time"></span>
                 </li>
 
             </ul>
@@ -48,9 +48,9 @@
             <div class ="col-md-8 offset-md-2 text-center">
 
                 <h1 id ="title-and-questions">Kirby Trivia Challenge</h1>
-                <p id="description">Try to answer the following Kirby-related questions! Keep in mind incorrect answers will deduct from your time left!</p>
+                <p id="description">Try to answer the following Kirby-related questions! Note that time is kept in the top right, and incorrect answers will deduct 10 seconds from your remaining time.</p>
 
-                <form id="enter-score"></form>
+                <form id="enter-score"></form><p id="message"></p>
 
                 <button id="start" type="button" class="btn">Start</button>
 
@@ -70,20 +70,6 @@
             </div>
         
         <br>
-
-        <div class="row">
-
-            <div class ="col-md-8 offset-md-2">
-
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="10" aria-valuemax="100"></div>
-                </div>
-
-            </div>
-
-        </div>
-
-
 
     </main>
 
