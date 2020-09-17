@@ -7,11 +7,76 @@
 
     <title>Quiz</title>
 
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- Added a link to our external stylesheet-->
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    
+    <header>
+
+        <nav class="navbar navbar-light">
+
+            <ul class="navbar-nav header-text">
+
+                <li class="nav-item mr-auto">
+                    <a class="nav-link mb-0" href="#">View Highscores</a>
+                </li>
+
+            </ul>
+
+            <ul class="navbar-nav header-text">
+
+                <li class="nav-item ml-auto">
+                    <a class="nav-link">Time: <span id ="time">75</span></a>
+                </li>
+
+            </ul>
+        
+        </nav>
+
+    </header>
+
+    <main class="container">
+
+        <div class = "row quiz">
+
+            <div class ="col-md-8 offset-md-2 text-center">
+
+                <h1 id ="title-and-questions">Kirby Trivia Challenge</h1>
+                <p id="description">Try to answer the following Kirby-related questions! Keep in mind incorrect answers will deduct from your time left!</p>
+                <button id="start" type="button" class="btn">Start</button>
+
+                <ul id = "answer-choices"></ul>
+
+            </div>
+
+        
+        </div>
+
+        <br><br>
+
+        <div class="row">
+
+            <div class ="col-md-8 offset-md-2">
+
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="10" aria-valuemax="100"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </main>
+
+    <script src="script.js"></script>
     
 </body>
 

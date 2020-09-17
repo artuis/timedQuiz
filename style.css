@@ -1,0 +1,44 @@
+
+
+h1 {
+    margin-bottom: 50px;
+}
+
+p {
+    font-size: 20px;
+}
+
+nav .navbar-nav li a{
+    color: white !important;
+}
+
+.quiz {
+    height: 600px;
+}
+
+.btn {
+    background-color: pink;
+    font-size: 20px;
+    color: white;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.navbar {
+    background-color: plum;
+    color: white
+}
+
+.progress-bar {
+    background-color: pink;
+}
+
+#answer-choices {
+    list-style-type: none;
+}
+
+
+
+
