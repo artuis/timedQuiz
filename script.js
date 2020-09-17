@@ -1,10 +1,11 @@
+//questions formatted as question, right answer, wrong answers
 var questions = [
 
     ["What was Kirby named after?", 
     "a lawyer", 
     "a city", 
     "a vacuum", 
-    "a cartoonist"],
+    "a developer"],
 
     ["Which Super Smash Bros. Game first featured King Dedede as a playable character?",
     "Super Smash Bros. Brawl",
@@ -16,7 +17,19 @@ var questions = [
     "Masahiro Sakurai",
     "Shigeru Miyamoto",
     "Satoru Iwata",
-    "Keiji Inafune"]
+    "Keiji Inafune"],
+
+    ["Which Kirby game was the first remake of a previous title?",
+    "Kirby: Nightmare in Dream Land",
+    "Kirby Super Star Ultra",
+    "Kirby's Return to Dream Land",
+    "Kirby's Extra Epic Yarn"],
+
+    ["Which was the first multiplayer Kirby game?",
+    "Kirby's Dream Course",
+    "Kirby Super Star",
+    "Kirby Air Ride",
+    "Kirby and the Amazing Mirror",]
 
 ];
 
@@ -43,14 +56,11 @@ var timer;
 
 //retrieves score list from local storage if one exists
 if (localStorage.getItem("scoreList") !== null) {
-
     highScores = JSON.parse(localStorage.getItem("scoreList"));
-
 }
 
 //different script is used if not on index
 if (location.href.includes("high-scores")) {
-
     highScores = sort(highScores);
 
     for (var i = 0; i < highScores.length; i++) {
@@ -67,7 +77,6 @@ if (location.href.includes("high-scores")) {
 
         scoreList.textContent = "";
         localStorage.removeItem("scoreList");
-
     })
 
 //script used on main page/index
@@ -84,17 +93,12 @@ if (location.href.includes("high-scores")) {
     answerList.addEventListener("click", function(event) {
 
         if (event.target.tagName === "BUTTON") {
-
             var result = "Wrong!"
-
+            
             if (event.target.id === "#correct") {
-
                 result = "Correct!"
-
             } else {
-
                 timeLeft -= 10;
-
             }
 
             rightWrong.innerHTML = "<hr>" + result;
@@ -103,10 +107,8 @@ if (location.href.includes("high-scores")) {
             var interval = setInterval (function() {
 
                 if (waitTime < 1) {
-
                     rightWrong.innerHTML = "";
                     clearInterval(interval);
-
                 }
 
                 waitTime--
@@ -117,16 +119,12 @@ if (location.href.includes("high-scores")) {
 
             // ends game if unused questions bank runs out
             if (questions.length > 0) {
-
                 newQuestion();
 
             // stops timer and asks for user input to store score
             } else {
-
                 clearInterval(timer);
                 inputScore();
-
-
             }
 
         } 
@@ -141,9 +139,7 @@ if (location.href.includes("high-scores")) {
         if (event.target.id === "#submit") {
 
             if (!initials.value || initials.value.includes("-")) {
-
                 document.querySelector("#message").textContent = "Please enter valid initials."
-
             } else {
 
                 highScores.push(initials.value + " - " + timeLeft);
@@ -173,14 +169,10 @@ function startGame() {
         time.textContent = "Time: "+ timeLeft;
 
         if (timeLeft < 1) {
-
             clearInterval(timer);
             inputScore();
-
         } else {
-
             timeLeft--;
-
         }
 
     }, 1000)
@@ -227,6 +219,7 @@ function newQuestion() {
 
     }
 
+    //removes question displayed and places inside array of used questions
     answeredQuestions.unshift(questions.splice(randIndex, 1)[0]);
 
 }
@@ -255,9 +248,7 @@ function inputScore() {
 function sort(arr) {
 
     if (arr.length <= 1) {
-
         return arr;
-
     }
 
     var mid = Math.floor(arr.length / 2)
@@ -281,10 +272,8 @@ function merge(arr1, arr2) {
         var value2 = parseInt(arr2[indexRight].substring(arr2[indexRight].indexOf("-") + 1));
 
         if (value1 > value2) {
-
             resultArr.push(arr1[indexLeft]);
             indexLeft++;
-
         } else {
             
             resultArr.push(arr2[indexRight]);
