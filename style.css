@@ -1,19 +1,38 @@
 
+form {
+    font-size: 20px;
+}
 
 h1 {
     margin-bottom: 50px;
 }
 
-p {
+input {
+    background-color: #f8bcf0;
+    border-radius: 2px;
+    border-width: 0;
+    color: #fc11e8;
     font-size: 20px;
+    margin: 0 20px;
+    transition-delay: 0s, 0s;
+    transition-duration: 0.2s, 0.2s;
+    transition-property: background-color, color;
+    transition-timing-function: ease, ease;
+    vertical-align: middle;
+    width: 50px;
 }
 
 nav .navbar-nav li a{
     color: white !important;
 }
 
+p {
+    font-size: 20px;
+    margin-bottom: 50px
+}
+
 .quiz {
-    height: 600px;
+    height: 500px;
 }
 
 .btn {
@@ -33,6 +52,10 @@ nav .navbar-nav li a{
 
 .progress-bar {
     background-color: pink;
+}
+
+.result {
+    height: 100px;
 }
 
 #answer-choices {
