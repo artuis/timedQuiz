@@ -1,5 +1,5 @@
 //questions formatted as question, right answer, wrong answers
-var questions = [
+const questions = [
 
     ["What was Kirby named after?", 
     "a lawyer", 
@@ -34,25 +34,24 @@ var questions = [
 ];
 
 //questions that have been used will go in here
-var answeredQuestions = [];
+const answeredQuestions = [];
 
-//various query selectors for future use
-var question = document.querySelector("#title-and-questions");
-var description = document.querySelector("#description");
-var start = document.querySelector("#start");
-var answerList = document.querySelector("#answer-choices");
-var time = document.querySelector("#time");
-var rightWrong = document.querySelector("#right-wrong");
-var enterScore = document.querySelector("#enter-score");
-var scoreList = document.querySelector("#score-list");
-var clear = document.querySelector("#clear");
+//various query selectors for future access
+const question = document.querySelector("#title-and-questions");
+const description = document.querySelector("#description");
+const start = document.querySelector("#start");
+const answerList = document.querySelector("#answer-choices");
+const time = document.querySelector("#time");
+const rightWrong = document.querySelector("#right-wrong");
+const enterScore = document.querySelector("#enter-score");
+const scoreList = document.querySelector("#score-list");
+const clear = document.querySelector("#clear");
 
-//variables stored for later use
-var questionNum = 1;
-var timeLeft = questions.length * 15;
-var highScores = [];
-var initials;
-var timer;
+//variables stored for display
+let timeLeft = questions.length * 15;
+let highScores = [];
+let initials;
+let timer;
 
 //retrieves score list from local storage if one exists
 if (localStorage.getItem("scoreList") !== null) {
@@ -63,9 +62,9 @@ if (localStorage.getItem("scoreList") !== null) {
 if (location.href.includes("high-scores")) {
     highScores = sort(highScores);
 
-    for (var i = 0; i < highScores.length; i++) {
+    for (let i = 0; i < highScores.length; i++) {
 
-        var score = document.createElement("li")
+        const score = document.createElement("li")
         score.className = "scores";
         score.textContent = (i + 1) + ". " + highScores[i];
         scoreList.appendChild(score);
@@ -93,7 +92,7 @@ if (location.href.includes("high-scores")) {
     answerList.addEventListener("click", function(event) {
 
         if (event.target.tagName === "BUTTON") {
-            var result = "Wrong!"
+            let result = "Wrong!"
             
             if (event.target.id === "#correct") {
                 result = "Correct!"
@@ -103,8 +102,8 @@ if (location.href.includes("high-scores")) {
 
             rightWrong.innerHTML = "<hr>" + result;
 
-            var waitTime = 1;
-            var interval = setInterval (function() {
+            let waitTime = 1;
+            const interval = setInterval (function() {
 
                 if (waitTime < 1) {
                     rightWrong.innerHTML = "";
@@ -144,8 +143,7 @@ if (location.href.includes("high-scores")) {
 
                 highScores.push(initials.value + " - " + timeLeft);
                 console.log(highScores);
-                var storable = JSON.stringify(highScores);
-                console.log(storable);
+                const storable = JSON.stringify(highScores);
                 localStorage.setItem("scoreList", storable);
                 location.href = "high-scores.html";
 
@@ -184,10 +182,10 @@ function startGame() {
 //changes page to display a random question with answers in random order
 function newQuestion() {
 
-    var answerBank = [];
-    var randIndex = Math.floor(Math.random() * questions.length);
+    const answerBank = [];
+    const randIndex = Math.floor(Math.random() * questions.length);
     question.textContent = questions[randIndex][0];
-    var correctAnswer = document.createElement("button");
+    const correctAnswer = document.createElement("button");
     correctAnswer.className ="btn"
     correctAnswer.id = "#correct"
     correctAnswer.style.display = "block";
@@ -195,9 +193,9 @@ function newQuestion() {
     correctAnswer.textContent = questions[randIndex][1];
     answerBank.push(correctAnswer);
 
-    for (var i = 2; i < questions[randIndex].length; i++) {
+    for (let i = 2; i < questions[randIndex].length; i++) {
 
-        var wrongAnswer = document.createElement("button");
+        const wrongAnswer = document.createElement("button");
         wrongAnswer.className ="btn"
         wrongAnswer.id = "#wrong"
         wrongAnswer.style.display = "block";
@@ -207,11 +205,11 @@ function newQuestion() {
 
     }
 
-    var answerNum = 1;
+    let answerNum = 1;
 
     while (answerBank.length !== 0) {
 
-        var randInd = Math.floor(Math.random() * answerBank.length);
+        const randInd = Math.floor(Math.random() * answerBank.length);
         answerBank[randInd].textContent = answerNum + ". " +answerBank[randInd].textContent;
         answerList.appendChild(answerBank[randInd]);
         answerBank.splice(randInd, 1);
@@ -230,7 +228,7 @@ function inputScore() {
     timeLeft = parseInt(time.textContent.substr(6));
     answerList.textContent = "";
     initials = document.createElement("input");
-    var submit = document.createElement("button");
+    const submit = document.createElement("button");
     submit.id = "#submit";
     submit.className = "btn";
     submit.textContent = "Submit";
@@ -251,9 +249,9 @@ function sort(arr) {
         return arr;
     }
 
-    var mid = Math.floor(arr.length / 2)
-    var left = arr.slice(0, mid);
-    var right = arr.slice(mid);
+    const mid = Math.floor(arr.length / 2)
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid);
 
     return merge(sort(left), sort(right))
 
@@ -262,14 +260,14 @@ function sort(arr) {
 //merge sort helper method
 function merge(arr1, arr2) {
 
-    var resultArr = [];
-    var indexLeft = 0;
-    var indexRight = 0;
+    const resultArr = [];
+    let indexLeft = 0;
+    let indexRight = 0;
 
     while (indexLeft < arr1.length && indexRight < arr2.length) {
 
-        var value1 = parseInt(arr1[indexLeft].substring(arr1[indexLeft].indexOf("-") + 1));
-        var value2 = parseInt(arr2[indexRight].substring(arr2[indexRight].indexOf("-") + 1));
+        const value1 = parseInt(arr1[indexLeft].substring(arr1[indexLeft].indexOf("-") + 1));
+        const value2 = parseInt(arr2[indexRight].substring(arr2[indexRight].indexOf("-") + 1));
 
         if (value1 > value2) {
             resultArr.push(arr1[indexLeft]);
